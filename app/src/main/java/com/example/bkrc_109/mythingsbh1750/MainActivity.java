@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class MainActivity extends Activity {
 
-    private static final int INTERVAL_BETWEEN_READ_MS = 500;
+    private static final int INTERVAL_BETWEEN_READ_MS = 1000;
     // I2C Device Name
     private static final String I2C_DEVICE_NAME = "I2C1";
     // I2C Slave Address
@@ -22,12 +22,10 @@ public class MainActivity extends Activity {
     private BH1750 mBH1750;
 
 
-
-
 //    private I2cDevice i2cDevice;
     private static final String TAG = "MainActivity";
-    PeripheralManager manager = PeripheralManager.getInstance();
-    Handler handler =new Handler();
+    private PeripheralManager manager = PeripheralManager.getInstance();
+    private Handler handler =new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +39,16 @@ public class MainActivity extends Activity {
         mBH1750 = new BH1750(i2cDevice);
         mBH1750.initSetting();
         handler.post(mReadRunnable);
+
     }
 
 
     private Runnable mReadRunnable = new Runnable() {
         @Override
         public void run() {
-            try {
-                float ill = mBH1750.readBH1750Data();
-                Log.d(TAG,"光照强度:"+(int)ill);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            float ill = mBH1750.readBH1750Data();
+            Log.d(TAG,"光照强度:"+(int)ill);
             handler.postDelayed(this,INTERVAL_BETWEEN_READ_MS);
         }
     };

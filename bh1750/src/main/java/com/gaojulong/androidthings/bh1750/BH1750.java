@@ -25,7 +25,7 @@ public class BH1750 {
             i2cBH1750.write(new byte[]{(byte) CMD_PWR_ON}, 1);
             i2cBH1750.write(new byte[]{(byte) CMD_RESET}, 1);
             i2cBH1750.write(new byte[]{(byte) CMD_CHRES}, 1);
-            i2cBH1750.write(new byte[]{(byte) CMD_PWR_OFF}, 1);
+
         } catch (IOException e) {
             e.printStackTrace();
             Log.e(TAG,"BH1750 Init Failure");
@@ -33,17 +33,26 @@ public class BH1750 {
     }
 
 
+    /**
+     * 读取数据至少需要120ms以上的延时
+      */
 
-    // Read a register block
-    public float readBH1750Data() throws IOException {
-        i2cBH1750.write(new byte[]{(byte) CMD_PWR_ON}, 1);
-        i2cBH1750.write(new byte[]{(byte) CMD_THRES},1);
-        // Read three consecutive register values
-        int rawLevel;
-        i2cBH1750.read(mBuffer, 2);
-        rawLevel = mBuffer[0] & 0xFF; // Unsigned int
-        rawLevel <<= 8;
-        rawLevel |= (mBuffer[1] & 0xFF); // Unsigned int
+    public float readBH1750Data() {
+        int rawLevel = 0;
+        try {
+            i2cBH1750.write(new byte[]{(byte) CMD_THRES},1);
+            Thread.sleep(200);
+            // Read three consecutive register values
+            i2cBH1750.read(mBuffer, 2);
+            rawLevel = mBuffer[0] & 0xFF; // Unsigned int
+            rawLevel <<= 8;
+            rawLevel |= (mBuffer[1] & 0xFF); // Unsigned int
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return  convertRawValueToLux(rawLevel);
     }
 
