@@ -4,27 +4,21 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-
-
 import com.gaojulong.androidthings.bh1750.BH1750;
-import com.google.android.things.pio.I2cDevice;
-import com.google.android.things.pio.PeripheralManager;
-import java.io.IOException;
+
 
 public class MainActivity extends Activity {
 
+    //    private I2cDevice i2cDevice;
+    private static final String TAG = "MainActivity";
     private static final int INTERVAL_BETWEEN_READ_MS = 1000;
     // I2C Device Name
     private static final String I2C_DEVICE_NAME = "I2C1";
     // I2C Slave Address
     private static final int I2C_ADDRESS = 0x23;
-    private I2cDevice i2cDevice;
+
     private BH1750 mBH1750;
 
-
-//    private I2cDevice i2cDevice;
-    private static final String TAG = "MainActivity";
-    private PeripheralManager manager = PeripheralManager.getInstance();
     private Handler handler =new Handler();
 
     @Override
@@ -35,8 +29,6 @@ public class MainActivity extends Activity {
         mBH1750.initSetting();
         handler.post(mReadRunnable);
     }
-
-
     private Runnable mReadRunnable = new Runnable() {
         @Override
         public void run() {

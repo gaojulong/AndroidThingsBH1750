@@ -9,24 +9,21 @@ import java.io.IOException;
 
 public class BH1750 {
     private static final String TAG = BH1750.class.getSimpleName();
-    private static  int CMD_PWR_OFF=0x00;  //关机
-    private static  int CMD_PWR_ON=0x01 ;  //开机
-    private static  int CMD_RESET=0x07;    //重置
-    private static  int CMD_CHRES=0x10;    //持续高分辨率检测
-    private static  int CMD_THRES=0x20;    //一次高分辨率
+    public    int CMD_PWR_OFF=0x00;  //关机
+    public   int CMD_PWR_ON=0x01 ;  //开机
+    public   int CMD_RESET=0x07;    //重置
+    public   int CMD_CHRES=0x10;    //持续高分辨率检测
+    public   int CMD_THRES=0x20;    //一次高分辨率
     private final byte[] mBuffer = new byte[2]; // for reading sensor values
     private I2cDevice i2cBH1750;
     private PeripheralManager manager = PeripheralManager.getInstance();
-
-
-    public   BH1750(String I2C_NAME, int I2C_address ){
+    public BH1750(String I2C_NAME, int I2C_address ){
         try {
             i2cBH1750 = manager.openI2cDevice(I2C_NAME,I2C_address);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
         public void initSetting(){
         try {
