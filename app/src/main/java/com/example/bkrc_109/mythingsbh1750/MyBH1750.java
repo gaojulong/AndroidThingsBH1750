@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.android.things.pio.I2cDevice;
 
+
 import java.io.IOException;
 
 public class MyBH1750 {
@@ -18,6 +19,7 @@ public class MyBH1750 {
     public MyBH1750(I2cDevice i2cBH1750){
         this.i2cBH1750 = i2cBH1750;
     }
+
 
     public void initSetting(){
         try {
