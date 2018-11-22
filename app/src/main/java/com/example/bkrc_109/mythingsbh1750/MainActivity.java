@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
     private static final int I2C_ADDRESS = 0x23;
     private I2cDevice i2cDevice;
     private MyBH1750 mBH1750;
-
+    
 
 
 //    private I2cDevice i2cDevice;
