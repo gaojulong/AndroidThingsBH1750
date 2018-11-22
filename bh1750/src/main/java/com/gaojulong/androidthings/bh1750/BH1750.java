@@ -3,24 +3,32 @@ package com.gaojulong.androidthings.bh1750;
 import android.util.Log;
 
 import com.google.android.things.pio.I2cDevice;
+import com.google.android.things.pio.PeripheralManager;
 
 import java.io.IOException;
 
 public class BH1750 {
     private static final String TAG = BH1750.class.getSimpleName();
-    private static final int CMD_PWR_OFF=0x00;  //关机
-    private static final int CMD_PWR_ON=0x01 ;  //开机
-    private static final int CMD_RESET=0x07;    //重置
-    private static final int CMD_CHRES=0x10;    //持续高分辨率检测
-    private static final int CMD_THRES=0x20;    //一次高分辨率
+    private static  int CMD_PWR_OFF=0x00;  //关机
+    private static  int CMD_PWR_ON=0x01 ;  //开机
+    private static  int CMD_RESET=0x07;    //重置
+    private static  int CMD_CHRES=0x10;    //持续高分辨率检测
+    private static  int CMD_THRES=0x20;    //一次高分辨率
     private final byte[] mBuffer = new byte[2]; // for reading sensor values
     private I2cDevice i2cBH1750;
-    public BH1750(I2cDevice i2cBH1750){
-        this.i2cBH1750 = i2cBH1750;
+    private PeripheralManager manager = PeripheralManager.getInstance();
+
+
+    public   BH1750(String I2C_NAME, int I2C_address ){
+        try {
+            i2cBH1750 = manager.openI2cDevice(I2C_NAME,I2C_address);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void initSetting(){
+        public void initSetting(){
         try {
             i2cBH1750.write(new byte[]{(byte) CMD_PWR_ON}, 1);
             i2cBH1750.write(new byte[]{(byte) CMD_RESET}, 1);

@@ -31,15 +31,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            i2cDevice = manager.openI2cDevice(I2C_DEVICE_NAME,I2C_ADDRESS);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mBH1750 = new BH1750(i2cDevice);
+        mBH1750 = new BH1750(I2C_DEVICE_NAME,I2C_ADDRESS);
         mBH1750.initSetting();
         handler.post(mReadRunnable);
-
     }
 
 
