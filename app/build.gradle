@@ -28,4 +28,5 @@ dependencies {
     compileOnly 'com.google.android.things:androidthings:+'
     implementation 'com.jmedeisis:windowview:0.2.0'
     implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
+    implementation project(':bh1750')
 }

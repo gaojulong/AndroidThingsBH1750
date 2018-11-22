@@ -1,4 +1,4 @@
-package com.example.bkrc_109.bh1750;
+package com.gaojulong.androidthings.bh1750;
 
 import android.util.Log;
 
@@ -14,11 +14,11 @@ public class BH1750 {
     private static final int CMD_CHRES=0x10;    //持续高分辨率检测
     private static final int CMD_THRES=0x20;    //一次高分辨率
     private final byte[] mBuffer = new byte[2]; // for reading sensor values
-
     private I2cDevice i2cBH1750;
     public BH1750(I2cDevice i2cBH1750){
         this.i2cBH1750 = i2cBH1750;
     }
+
 
     public void initSetting(){
         try {

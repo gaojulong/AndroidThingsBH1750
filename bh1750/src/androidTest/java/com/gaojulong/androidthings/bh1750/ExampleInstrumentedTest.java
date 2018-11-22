@@ -1,4 +1,4 @@
-package com.example.bkrc_109.bh1750;
+package com.gaojulong.androidthings.bh1750;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.bkrc_109.bh1750", appContext.getPackageName());
+        assertEquals("com.gaojulong.androidthings.bh1750.test", appContext.getPackageName());
     }
 }

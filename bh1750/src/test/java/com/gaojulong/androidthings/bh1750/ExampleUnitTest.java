@@ -1,4 +1,4 @@
-package com.example.bkrc_109.bh1750;
+package com.gaojulong.androidthings.bh1750;
 
 import org.junit.Test;
 

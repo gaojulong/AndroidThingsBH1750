@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+
+import com.gaojulong.androidthings.bh1750.BH1750;
 import com.google.android.things.pio.I2cDevice;
 import com.google.android.things.pio.PeripheralManager;
 import java.io.IOException;
@@ -17,8 +19,9 @@ public class MainActivity extends Activity {
     // I2C Slave Address
     private static final int I2C_ADDRESS = 0x23;
     private I2cDevice i2cDevice;
-    private MyBH1750 mBH1750;
-    
+    private BH1750 mBH1750;
+
+
 
 
 //    private I2cDevice i2cDevice;
@@ -35,7 +38,7 @@ public class MainActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mBH1750 = new MyBH1750(i2cDevice);
+        mBH1750 = new BH1750(i2cDevice);
         mBH1750.initSetting();
         handler.post(mReadRunnable);
     }
